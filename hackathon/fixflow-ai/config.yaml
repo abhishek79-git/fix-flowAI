@@ -1,0 +1,115 @@
+# FixFlow AI Configuration
+# From Complaint to Action
+
+project:
+  name: "FixFlow AI"
+  version: "1.0.0"
+  tagline: "From Complaint to Action"
+  seed: 42
+
+data:
+  num_samples: 5000
+  train_ratio: 0.7
+  id_val_ratio: 0.15
+  ood_val_ratio: 0.15
+  tfidf_max_features: 300
+  tfidf_ngram_range: [1, 2]
+  categories:
+    - "Road Damage"
+    - "Electrical Hazard"
+    - "Water Leakage"
+    - "Waste Management"
+    - "Streetlight Failure"
+    - "Drainage Blockage"
+    - "Building Damage"
+    - "Public Safety"
+  location_zones:
+    - "Academic Zone"
+    - "Hostel Zone"
+    - "Residential Zone"
+    - "Public Zone"
+    - "Administrative Zone"
+  weather_conditions:
+    - "Clear"
+    - "Cloudy"
+    - "Light Rain"
+    - "Heavy Rain"
+    - "Storm"
+
+model:
+  hidden_layers: [128, 64]
+  dropout: 0.2
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  huber_delta: 1.0
+  label_smoothing: 0.1
+  loss_weights:
+    category: 1.0
+    severity: 0.5
+    resolution: 0.3
+  max_epochs: 100
+  patience: 10
+  batch_size: 64
+  gradient_clip_norm: 5.0
+
+constraints:
+  max_parameters: 200000
+  max_latency_ms: 50
+  max_ece: 0.08
+  max_group_gap: 0.05
+  max_grad_norm: 5.0
+
+evolution:
+  population_size: 20
+  num_generations: 15
+  crossover_rate: 0.8
+  mutation_rate: 0.2
+  tournament_size: 3
+  param_bounds:
+    hidden_1: [32, 256]
+    hidden_2: [16, 128]
+    dropout: [0.05, 0.5]
+    learning_rate: [0.0001, 0.01]
+    weight_decay: [0.00001, 0.001]
+    huber_delta: [0.5, 2.0]
+    loss_weight_severity: [0.1, 1.0]
+    loss_weight_resolution: [0.1, 1.0]
+
+priority:
+  weights:
+    severity: 0.25
+    urgency: 0.25
+    impact: 0.20
+    safety_risk: 0.15
+    duplicate_concentration: 0.10
+    resolution_cost: 0.05
+
+resources:
+  default_workers: 5
+  default_vehicles: 2
+  default_time_hours: 4.0
+
+drift:
+  scenarios:
+    - name: "normal"
+      description: "Training-like distribution"
+    - name: "missing_fields"
+      description: "Random field removal"
+      missing_rate: 0.3
+    - name: "text_noise"
+      description: "Typos and token corruption"
+      noise_rate: 0.2
+    - name: "numeric_shift"
+      description: "Shifted numeric distributions"
+      shift_factor: 2.0
+    - name: "heavy_rain"
+      description: "Weather shock scenario"
+    - name: "complaint_surge"
+      description: "10x complaint volume"
+      surge_factor: 10
+
+ui:
+  theme: "dark"
+  page_title: "FixFlow AI"
+  page_icon: "🔧"
+  layout: "wide"

@@ -1,0 +1,67 @@
+{
+  "Data validation": {
+    "total_records": 5000,
+    "train_size": 3500,
+    "id_val_size": 750,
+    "ood_val_size": 750,
+    "categories": 8,
+    "deterministic": true,
+    "status": "PASS"
+  },
+  "Baseline evaluation": {
+    "status": "ERROR",
+    "error": "DLL load failed while importing cython_lapack: An Application Control policy has blocked this file."
+  },
+  "OOD evaluation": {
+    "status": "ERROR",
+    "error": "DLL load failed while importing _openmp_helpers: An Application Control policy has blocked this file."
+  },
+  "Stress testing": {
+    "scenarios_tested": 5,
+    "scenario_sizes": {
+      "missing_fields": 750,
+      "text_noise": 750,
+      "numeric_shift": 750,
+      "heavy_rain": 750,
+      "complaint_surge": 7500
+    },
+    "all_scenarios_generated": true,
+    "status": "PASS"
+  },
+  "Calibration": {
+    "ece": 0.078,
+    "num_bins": 10,
+    "status": "PASS"
+  },
+  "Fairness": {
+    "status": "ERROR",
+    "error": "DLL load failed while importing _openmp_helpers: An Application Control policy has blocked this file."
+  },
+  "Latency/parameters": {
+    "param_count": 49354,
+    "latency_ms": 0.15,
+    "param_budget_ok": true,
+    "latency_budget_ok": true,
+    "status": "PASS"
+  },
+  "Reproducibility": {
+    "run_results": [
+      0.012627,
+      0.012627,
+      0.012627
+    ],
+    "is_deterministic": true,
+    "variance": 0.0,
+    "status": "PASS"
+  },
+  "AST architecture quality": {
+    "modules_analyzed": 58,
+    "total_functions": 0,
+    "total_classes": 0,
+    "functions_over_60_lines": 12,
+    "wildcard_imports": 0,
+    "missing_docstrings": 0,
+    "passed": false,
+    "status": "WARN"
+  }
+}
